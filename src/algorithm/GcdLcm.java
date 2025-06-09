@@ -4,7 +4,7 @@
 
      */
 
-    package step;
+    package algorithm;
 
     import java.io.BufferedReader;
     import java.io.IOException;
@@ -24,11 +24,5 @@
             //두 수의 곱 / 두 수의 최대공약수
             return a*b / gcd(a,b);
         }
-
-        public static void main(String[] args) throws IOException {
-
-            BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-
-
-        }
+        
     }
