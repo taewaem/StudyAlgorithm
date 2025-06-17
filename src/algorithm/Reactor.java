@@ -1,9 +1,6 @@
 package algorithm;
 
-import java.util.HashMap;
-import java.util.Map;
-
-public class Reacter {
+public class Reactor {
     public static void main(String[] args) {
         //각 리엑터는 매 초 에너지 2만큼 소요
         //에너지를 소모하 수 있는 경우, 좌우에 있는 리엑테에게 1의 에너지 전달
