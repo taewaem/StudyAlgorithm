@@ -24,15 +24,27 @@ public class DartGame {
         for (int i = 0; i < split.length; i++) {
             if (i != 0) {
                 if (split[i].equals(bonus[0])) {
+                    if (i > 1 && split[i - 1].equals("0") && split[i - 2].equals("1")) {
+                        split[i - 1] = "10";
+                    }
                     result[n] = Integer.parseInt(split[i - 1]) * 1;
                     n++;
                 } else if (split[i].equals(bonus[1])){
+                    if (i > 1 && split[i - 1].equals("0") && split[i - 2].equals("1")) {
+                        split[i - 1] = "10";
+                    }
+
                     result[n] = Integer.parseInt(split[i - 1]) * Integer.parseInt(split[i - 1]);
                     n++;
                 } else if (split[i].equals(bonus[2])) {
+                    if ( i > 1 && split[i - 1].equals("0") && split[i - 2].equals("1")) {
+                        split[i - 1] = "10";
+                    }
+
                     result[n] = Integer.parseInt(split[i - 1]) * Integer.parseInt(split[i - 1]) * Integer.parseInt(split[i - 1]);
                     n++;
                 }
+
 
                 if (split[i].equals(random[0])) {
                     if (n == 1) {
