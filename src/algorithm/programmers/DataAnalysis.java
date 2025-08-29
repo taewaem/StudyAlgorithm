@@ -1,24 +1,25 @@
 package algorithm.programmers;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Comparator;
+import java.util.*;
 
 /**
  * PCCE 10번
  * 데이터 분석
  */
 public class DataAnalysis {
-
-    int search;
-    int sort;
+    /**
+     * ext 값이 < sort_by
+     * ext, sort_by -> code, date, maximum, remain
+     * sort_by순으로 오름차순
+     * val_ext보다 작은 데이터만 오름차순
+     */
+    static int search;
+    static int sort;
 
     public int[][] solution(int[][] data, String ext, int val_ext, String sort_by) {
+        List<int[]> list = new ArrayList<>();
 
-
-        ArrayList<int[]> list = new ArrayList<>();
-
-        // 검색 값 설정
+        // 필터링 기준 설정 (ext)
         if (ext.equals("code")) {
             search = 0;
         } else if (ext.equals("date")) {
@@ -29,21 +30,14 @@ public class DataAnalysis {
             search = 3;
         }
 
-        // 검색 (val_ext 보다 작은 값 Search 후 list 에 넣기)
-        for (int i = 0; i < data.length; i++) {
-
-            if (data[i][search] < val_ext) {
-                list.add(new int[]{data[i][0], data[i][1], data[i][2], data[i][3]});
+        // val_ext보다 작은 데이터만 필터링
+        for (int[] row : data) {
+            if (row[search] < val_ext) {
+                list.add(row);
             }
         }
 
-        // answer 에 넣기
-        int[][] answer = new int[list.size()][4];
-        for (int i = 0; i < list.size(); i++) {
-            answer[i] = list.get(i);
-        }
-
-        // 정렬 값 설정
+        // 정렬 기준 설정 (sort_by)
         if (sort_by.equals("code")) {
             sort = 0;
         } else if (sort_by.equals("date")) {
@@ -55,13 +49,13 @@ public class DataAnalysis {
         }
 
         // 오름차순 정렬
-        Arrays.sort(answer, new Comparator<int[]>() {
-            @Override
-            public int compare(int[] o1, int[] o2) {
+        Collections.sort(list, (a, b) -> a[sort] - b[sort]);
 
-                return o1[sort] - o2[sort];
-            }
-        });
+        // List -> 배열 변환
+        int[][] answer = new int[list.size()][4];
+        for (int i = 0; i < list.size(); i++) {
+            answer[i] = list.get(i);
+        }
 
         return answer;
     }
